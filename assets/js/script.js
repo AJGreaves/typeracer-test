@@ -18,12 +18,12 @@ const hardTexts = [
 
 let startTime;
 let endTime;
-const startBtn = document.getElementById('start-btn');
-const stopBtn = document.getElementById('stop-btn');
+let testStarted = false;
 const sampleTextElem = document.getElementById('sample-text');
 const userInputElem = document.getElementById('user-input');
 const timeElem = document.getElementById('time');
 const wpmElem = document.getElementById('wpm');
+const retryBtn = document.getElementById('retry-btn');
 
 function getRandomText(texts) {
     return texts[Math.floor(Math.random() * texts.length)];
@@ -47,8 +47,7 @@ function updateSampleText() {
 
 function startTest() {
     startTime = new Date();
-    startBtn.disabled = true;
-    stopBtn.disabled = false;
+    testStarted = true;
 }
 
 function stopTest() {
@@ -61,8 +60,17 @@ function stopTest() {
     const wpm = calculateWPM(sampleText, userText, testTime);
     wpmElem.innerText = wpm;
 
-    startBtn.disabled = false;
-    stopBtn.disabled = true;
+    userInputElem.disabled = true;
+    testStarted = false;
+    retryBtn.disabled = false;
+}
+
+
+function retryTest() {
+    userInputElem.disabled = false;
+    userInputElem.value = ''; // Clear the previous input
+    userInputElem.focus(); // Focus on the textarea
+    startTest();
 }
 
 function calculateWPM(sampleText, userText, testTime) {
@@ -100,7 +108,20 @@ function updateTypingFeedback() {
     sampleTextElem.innerHTML = feedbackHTML.trim();
 }
 
+function handleUserInput() {
+    if (!testStarted) {
+        startTest();
+    }
+    updateTypingFeedback();
+}
+
+function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+        stopTest();
+    }
+}
+
 document.getElementById('difficulty').addEventListener('change', updateSampleText);
-startBtn.addEventListener('click', startTest);
-stopBtn.addEventListener('click', stopTest);
-userInputElem.addEventListener('input', updateTypingFeedback);
+userInputElem.addEventListener('input', handleUserInput);
+userInputElem.addEventListener('keydown', handleKeyDown);
+retryBtn.addEventListener('click', retryTest);

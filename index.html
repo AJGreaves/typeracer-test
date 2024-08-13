@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-12 text-center my-4">
                     <h1>TypeRacer</h1>
-                    <button class="btn btn-light mt-3" id="instructions-btn">
+                    <button class="btn btn-light mt-3" id="instructions-btn" data-bs-toggle="modal" data-bs-target="#instructionsModal">
                         <i class="fas fa-info-circle"></i> Instructions
                     </button>
                 </div>
@@ -44,12 +44,10 @@
                     <div class="mb-3">
                         <label class="form-label visually-hidden" for="user-input">Type Here</label>
                         <textarea class="form-control" id="user-input" rows="6"
-                            placeholder="Click the start button to begin the test"></textarea>
+                            placeholder="Start typing to begin the test, hit enter to end the test."></textarea>
                     </div>
                     <div class="mb-3 text-center">
-                        <button class="btn btn-lg btn-outline-orange" id="start-btn">Start</button>
-                        <button class="btn btn-lg btn-outline-orange" id="stop-btn">Stop</button>
-                        <button class="btn btn-lg btn-outline-orange" id="reset-btn">Reset</button>
+                        <button class="btn btn-lg btn-outline-orange" id="retry-btn" disabled>Retry</button>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -69,6 +67,31 @@
                 </div>
             </div>
     </main>
+    <!-- Instructions Modal -->
+    <div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="instructionsModalLabel">Typing Test Instructions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ol>
+                        <li>Select the difficulty level from the dropdown menu.</li>
+                        <li>Read the sample text displayed on the screen.</li>
+                        <li>Start typing the sample text in the input area below.</li>
+                        <li>Press the "Enter" key to submit your text and stop the timer.</li>
+                        <li>Your time and words per minute (WPM) will be displayed in the results area.</li>
+                        <li>Click the "Retry" button to take the test again.</li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/3b20d96fa9.js" crossorigin="anonymous"></script>
     <script src="assets/js/script.js"></script>
