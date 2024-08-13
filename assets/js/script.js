@@ -81,6 +81,26 @@ function calculateWPM(sampleText, userText, testTime) {
     return Math.round(wpm);
 }
 
+function updateTypingFeedback() {
+    const sampleWords = sampleTextElem.innerText.split(' ');
+    const userWords = userInputElem.value.split(' ');
+
+    let feedbackHTML = '';
+
+    for (let i = 0; i < sampleWords.length; i++) {
+        if (userWords[i] === undefined) {
+            feedbackHTML += `<span>${sampleWords[i]}</span> `;
+        } else if (userWords[i] === sampleWords[i]) {
+            feedbackHTML += `<span class="correct-word">${sampleWords[i]}</span> `;
+        } else {
+            feedbackHTML += `<span class="incorrect-word">${sampleWords[i]}</span> `;
+        }
+    }
+
+    sampleTextElem.innerHTML = feedbackHTML.trim();
+}
+
 document.getElementById('difficulty').addEventListener('change', updateSampleText);
 startBtn.addEventListener('click', startTest);
 stopBtn.addEventListener('click', stopTest);
+userInputElem.addEventListener('input', updateTypingFeedback);
