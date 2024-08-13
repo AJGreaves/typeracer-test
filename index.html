@@ -71,47 +71,7 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/3b20d96fa9.js" crossorigin="anonymous"></script>
-    <script>
-        const easyTexts = [
-            "The cat sat on the mat.",
-            "A quick brown fox jumps over the lazy dog.",
-            "She sells seashells by the seashore."
-        ];
-
-        const mediumTexts = [
-            "To be or not to be, that is the question.",
-            "All that glitters is not gold.",
-            "A journey of a thousand miles begins with a single step."
-        ];
-
-        const hardTexts = [
-            "It was the best of times, it was the worst of times.",
-            "In the beginning God created the heavens and the earth.",
-            "The quick brown fox jumps over the lazy dog multiple times."
-        ];
-
-        function getRandomText(texts) {
-            return texts[Math.floor(Math.random() * texts.length)];
-        }
-
-        function updateSampleText() {
-            const difficulty = document.getElementById('difficulty').value;
-            let texts;
-
-            if (difficulty === 'easy') {
-                texts = easyTexts;
-            } else if (difficulty === 'medium') {
-                texts = mediumTexts;
-            } else if (difficulty === 'hard') {
-                texts = hardTexts;
-            }
-
-            const randomText = getRandomText(texts);
-            document.getElementById('sample-text').innerText = randomText;
-        }
-
-        document.getElementById('difficulty').addEventListener('change', updateSampleText);
-    </script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
